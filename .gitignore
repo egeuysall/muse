@@ -1,0 +1,35 @@
+# Ignore node_modules and build directories for frontend
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+
+# Ignore Go build files and dependencies
+/backend/bin/
+/backend/pkg/
+/backend/*.exe
+/backend/*.test
+/backend/*.out
+/backend/go.sum
+/backend/go.mod
+
+# Ignore environment variables files (not recommended for production secrets)
+*.env
+*.env.local
+*.env.production
+*.env.development
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Docker-related
+docker-compose.override.yml
+*.dockerignore
