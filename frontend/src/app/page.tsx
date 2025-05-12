@@ -1,6 +1,7 @@
 import React from "react";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const Home: React.FC = () => {
     return (
@@ -11,12 +12,15 @@ const Home: React.FC = () => {
                     inspiration. A creative space to fuel your next big idea.</p>
                 <section className="flex flex-col md:flex-row w-full gap-2">
                     <Link href="/share" className="">
-                        <Button className="btn w-full md:w-auto">Share your thoughts</Button>
+                        <Button className="btn w-full md:w-auto">Inspire others</Button>
                     </Link>
-                    <Link href="/capture" className="w-full">
+                    <Link href="/explore" className="">
                         <Button className="btn w-full md:w-auto">Capture ideas</Button>
                     </Link>
                 </section>
+                <Image alt="Product demo image" className="w-full rounded-lg hover:blur-xs transition duration-200"
+                       width={1000} height={500}
+                       src="/images/reveal.jpg"/>
             </section>
         </main>
     );
