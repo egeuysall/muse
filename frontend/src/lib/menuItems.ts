@@ -2,7 +2,7 @@ import type { MenuItem } from "@/types/menu"
 
 const menuItems: MenuItem[] = [
     {
-        id: 1,
+        id: "1",
         title: "Documentation",
         links: [
             { href: "/docs/", text: "Getting started" },
@@ -10,7 +10,7 @@ const menuItems: MenuItem[] = [
         ]
     },
     {
-        id: 2,
+        id: "2",
         title: "Components",
         links: [
             { href: "../components", text: "See all" },
@@ -18,7 +18,7 @@ const menuItems: MenuItem[] = [
         ]
     },
     {
-        id: 3,
+        id: "3",
         title: "Discover",
         links: [
             { href: "/discover/featured", text: "Featured" },
@@ -26,7 +26,7 @@ const menuItems: MenuItem[] = [
         ]
     },
     {
-        id: 4,
+        id: "4",
         title: "Contact",
         links: [
             { href: "/#contact", text: "Feedback" },
@@ -34,7 +34,7 @@ const menuItems: MenuItem[] = [
         ]
     },
     {
-        id: 5,
+        id: "5",
         title: "Links",
         links: [
             { href: "/#newsletter", text: "Newsletter" },

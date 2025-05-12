@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, FC } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import {FC, useEffect, useState} from "react";
+import {AnimatePresence, motion} from "motion/react";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -12,15 +12,9 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "./navigation-menu";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "./accordion";
-import { X } from "lucide-react";
-import { Menu } from "lucide-react";
-import menuItems from '../../lib/menuItems'
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger,} from "./accordion";
+import {Menu, X} from "lucide-react";
+import menuItems from '@/lib/menuItems'
 
 const Header: FC = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -56,24 +50,23 @@ const Header: FC = () => {
         <div className="fixed top-6 left-0 right-0 z-100 flex justify-center w-full ">
             <motion.div className="relative w-[90vw] md:w-[95vw]">
                 <motion.header
-                    className="backdrop-blur-lg
-bg-white/75 dark:bg-black/75 py-3 px-2 rounded-lg flex justify-between relative z-10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.2 }}
+                    className="backdrop-blur-lg bg-primary-200 py-3 px-2 rounded-lg flex justify-between relative z-10"
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    transition={{duration: 0.2}}
                 >
                     <Link href="/" className="flex gap-4 items-center">
                         <Image
-                            width={20}
-                            height={20}
-                            className="ml-2 transition hover:opacity-75 dark:invert"
+                            width={24}
+                            height={24}
+                            className="ml-2 transition hover:opacity-75"
                             alt="Logo"
                             src="/logos/header-logo.svg"
                         />
-                        <p className="font-bold hidden w-full md:flex">Astra UI</p>
+                        <p className="font-bold hidden w-full md:flex text-primary-100">Muse</p>
                     </Link>
                     <NavigationMenu className="items-center justify-center">
-                        <NavigationMenuList className="font-bold text-black dark:text-white flex">
+                        <NavigationMenuList className="font-bold text-black  flex">
                             {menuItems.map((item) => (
                                 <NavigationMenuItem key={item.id} className="hidden md:flex">
                                     <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
@@ -94,9 +87,9 @@ bg-white/75 dark:bg-black/75 py-3 px-2 rounded-lg flex justify-between relative 
                             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                         >
                             {mobileMenuOpen ? (
-                                <X size="28" className="text-black dark:text-white" />
+                                <X size="28" className="text-primary-100 "/>
                             ) : (
-                                <Menu size="28" className="text-black dark:text-white" />
+                                <Menu size="28" className="text-primary-100 "/>
                             )}
                         </button>
                     </NavigationMenu>
@@ -105,10 +98,10 @@ bg-white/75 dark:bg-black/75 py-3 px-2 rounded-lg flex justify-between relative 
                     <AnimatePresence>
                         {scrolled && (
                             <motion.div
-                                className="absolute inset-0 rounded-lg border dark:border-[#2e2e2e] border-[#F2F2F2] pointer-events-none"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
+                                className="absolute inset-0 rounded-lg border  border-primary-300 pointer-events-none"
+                                initial={{opacity: 0}}
+                                animate={{opacity: 1}}
+                                exit={{opacity: 0}}
                                 transition={{
                                     duration: 0.2,
                                     ease: "easeInOut"
@@ -123,29 +116,30 @@ bg-white/75 dark:bg-black/75 py-3 px-2 rounded-lg flex justify-between relative 
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        className="fixed inset-0 bg-white dark:bg-black z-50 md:hidden flex flex-col"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 bg-primary-100  z-10 md:hidden flex flex-col"
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
+                        transition={{duration: 0.2}}
                     >
-                        <div className="flex justify-between items-center p-6 border-b dark:border-[#2e2e2e] border-[#f2f2f2]">
+                        <div
+                            className="flex justify-between items-center p-6 border-b border-primary-300">
                             <Link href="/" className="flex items-center">
                                 <Image
-                                    width={20}
-                                    height={20}
-                                    className="transition hover:opacity-75 dark:invert"
+                                    width={24}
+                                    height={24}
+                                    className="transition hover:opacity-75"
                                     alt="Logo"
-                                    src="/logos/header-logo.svg"
+                                    src="/logos/mobile-logo.svg"
                                     onClick={() => setMobileMenuOpen(false)}
                                 />
                             </Link>
                             <button
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="text-black dark:text-white flex items-center justify-center"
+                                className="text-black  flex items-center justify-center"
                                 aria-label="Close menu"
                             >
-                                <X size="28" />
+                                <X size="28" className="text-primary-300"/>
                             </button>
                         </div>
 
@@ -159,13 +153,15 @@ bg-white/75 dark:bg-black/75 py-3 px-2 rounded-lg flex justify-between relative 
                                     {menuItems.map((item, i) => (
                                         <motion.div
                                             key={item.id}
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.2, delay: i * 0.03 }}
+                                            initial={{opacity: 0}}
+                                            animate={{opacity: 1}}
+                                            transition={{duration: 0.2, delay: i * 0.03}}
                                             className="w-full"
                                         >
-                                            <AccordionItem value={item.id} className="border-b dark:border-[#2e2e2e] border-[#f2f2f2] w-full">
-                                                <AccordionTrigger className="font-bold text-2lg text-black dark:text-white py-4 w-full text-center flex justify-center">
+                                            <AccordionItem value={item.id}
+                                                           className="border-b  border-primary-300 w-full">
+                                                <AccordionTrigger
+                                                    className="font-bold text-2lg text-primary-300  py-4 w-full text-center flex justify-center">
                                                     <div className="flex items-center justify-center">
                                                         {item.title}
                                                     </div>
@@ -176,13 +172,13 @@ bg-white/75 dark:bg-black/75 py-3 px-2 rounded-lg flex justify-between relative 
                                                             <motion.div
                                                                 key={link.href}
                                                                 className="w-full text-center"
-                                                                initial={{ opacity: 0 }}
-                                                                animate={{ opacity: 1 }}
-                                                                transition={{ duration: 0.2, delay: j * 0.03 }}
+                                                                initial={{opacity: 0}}
+                                                                animate={{opacity: 1}}
+                                                                transition={{duration: 0.2, delay: j * 0.03}}
                                                             >
                                                                 <Link
                                                                     href={link.href}
-                                                                    className="py-3 inline-block text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors w-full"
+                                                                    className="py-3 inline-block text-black hover:text-gray-600  transition-colors w-full"
                                                                     onClick={() => setMobileMenuOpen(false)}
                                                                 >
                                                                     {link.text}
@@ -198,8 +194,9 @@ bg-white/75 dark:bg-black/75 py-3 px-2 rounded-lg flex justify-between relative 
                             </div>
                         </div>
 
-                        <div className="py-4 w-full text-center text-black dark:text-white border-t border-[#f2f2f2] dark:border-[#2e2e2e]">
-                            <p className="text-black/50 dark:text-white/50 w-full text-sm">&copy; {year} Astra UI</p>
+                        <div
+                            className="py-4 w-full text-center   border-t border-primary-300">
+                            <p className="text-primary-300/50 w-full text-sm">&copy; {year} Muse</p>
                         </div>
                     </motion.div>
                 )}

@@ -1,27 +1,25 @@
 import React from 'react';
 import Link from "next/link";
-import { Globe } from "lucide-react";
-import { Github } from "lucide-react";
-import { Mail } from "lucide-react";
+import {Github, Globe, Mail} from "lucide-react";
 
 const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="w-full bg-[#ffffff] dark:bg-[#000000] border border-[#f2f2f2] dark:border-[#2e2e2e] rounded-xl py-8 px-6 mt-auto">
+        <footer className="w-full bg-primary-200 rounded-lg py-8 px-6 mt-auto">
             <div className="container mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     <div className="flex flex-col gap-2">
                         <h6 className="footer-text font-bold">
-                            Astra UI
+                            Muse
                         </h6>
 
                         <p className="footer-text w-full">
-                            Design. Build. Empower.
+                            Discover. Create. Inspire.
                         </p>
 
                         <p className="footer-text">
-                            &copy; {currentYear} Astra UI
+                            &copy; {currentYear} Muse
                         </p>
                     </div>
 
@@ -61,23 +59,23 @@ const Footer: React.FC = () => {
                             Connect
                         </h6>
 
-                        <address className="mt-3 not-italic">
+                        <address className="mt-4 not-italic">
                             <div className="flex items-center h-full gap-4">
                                 <Link
-                                    href="https://www.astraui.me/"
+                                    href="https://www.muse.egeuysal.com/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Website"
                                 >
-                                    <Globe size="28" className="text-black dark:text-white"/>
+                                    <Globe size="24" className="text-primary-100"/>
                                 </Link>
                                 <Link
-                                    href="https://github.com/astraui/astraui"
+                                    href="https://github.com/egeuysall/muse"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="GitHub"
                                 >
-                                    <Github size="28" className="text-black dark:text-white"/>
+                                    <Github size="24" className="text-primary-100"/>
                                 </Link>
                                 <Link
                                     href="mailto:hello@egeuysal.com"
@@ -85,7 +83,7 @@ const Footer: React.FC = () => {
                                     rel="noopener noreferrer"
                                     aria-label="Email"
                                 >
-                                    <Mail size="30" className="text-black dark:text-white"/>
+                                    <Mail size="24" className="text-primary-100"/>
                                 </Link>
                             </div>
                         </address>

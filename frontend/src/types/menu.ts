@@ -4,7 +4,7 @@ export type MenuLink = {
 }
 
 export type MenuItem = {
-    id: number;
+    id: string;
     title: string;
     links: MenuLink[];
 }
