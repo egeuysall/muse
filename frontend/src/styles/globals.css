@@ -1,5 +1,8 @@
 /* Import Tailwind CSS */
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant hover (&:hover);
 
 @theme {
     --color-primary-100: #FFF0F3;
