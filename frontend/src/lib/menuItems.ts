@@ -1,44 +1,27 @@
-import type { MenuItem } from "@/types/menu"
+import type {MenuItem} from "@/types/menu"
 
 const menuItems: MenuItem[] = [
     {
         id: "1",
-        title: "Documentation",
+        title: "Ideas",
         links: [
-            { href: "/docs/", text: "Getting started" },
-            { href: "/docs/changelog", text: "Changelog" }
+            {href: "/explore", text: "Explore"},
+            {href: "/share", text: "Share"}
         ]
     },
     {
         id: "2",
-        title: "Components",
+        title: "Documentation",
         links: [
-            { href: "../components", text: "See all" },
-            { href: "../docs/cli", text: "CLI" }
+            {href: "/getting-started", text: "Getting Started"},
         ]
     },
     {
         id: "3",
-        title: "Discover",
-        links: [
-            { href: "/discover/featured", text: "Featured" },
-            { href: "/discover/tips", text: "Tips" }
-        ]
-    },
-    {
-        id: "4",
-        title: "Contact",
-        links: [
-            { href: "/#contact", text: "Feedback" },
-            { href: "mailto:hello@egeuysal.com", text: "Support" }
-        ]
-    },
-    {
-        id: "5",
         title: "Links",
         links: [
-            { href: "/#newsletter", text: "Newsletter" },
-            { href: "https://github.com/astraui/astraui", text: "GitHub" },
+            {href: "mailto:hello@egeuysal.com", text: "Email"},
+            {href: "https://github.com/egeuysall/muse", text: "GitHub"}
         ]
     }
 ];

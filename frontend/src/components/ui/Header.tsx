@@ -66,7 +66,7 @@ const Header: FC = () => {
                         <p className="font-bold hidden w-full md:flex text-primary-100">Muse</p>
                     </Link>
                     <NavigationMenu className="items-center justify-center">
-                        <NavigationMenuList className="font-bold text-black  flex">
+                        <NavigationMenuList className="font-bold text-primary-100 flex">
                             {menuItems.map((item) => (
                                 <NavigationMenuItem key={item.id} className="hidden md:flex">
                                     <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
