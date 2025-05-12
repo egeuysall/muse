@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.muse.egeuysal.com/">
-    <img src="https://res.cloudinary.com/dpgeyzgaw/image/upload/v1747010081/Muse%20Logo.png" height="96">
+    <img src="https://res.cloudinary.com/dpgeyzgaw/image/upload/v1747082346/muse-logo.png" height="96">
     <h3 align="center">Muse</h3>
   </a>
 </p>
