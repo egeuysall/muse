@@ -2,12 +2,12 @@
 import '@/styles/globals.css';
 
 // External Libraries
-import type { Metadata } from 'next';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import type {Metadata} from 'next';
+import {Analytics} from '@vercel/analytics/react';
+import {SpeedInsights} from '@vercel/speed-insights/next';
 
 // Fonts
-import { openSans, jetBrainsMono } from '@/lib/fonts';
+import {jetBrainsMono, openSans} from '@/lib/fonts';
 
 // Internal Components
 import Footer from '@/components/ui/Footer';
@@ -16,10 +16,10 @@ import LayoutWrapper from '@/components/LayoutWrapper';
 
 async function getProduct() {
     return {
-        name: "Astra UI: Design faster, build smarter, shine brighter.",
+        name: "Muse: Discover. Create. Inspire. A Minimalist Platform to Capture, Share, and Explore Creative Ideas",
         image: "/og-links.jpg",
         description:
-            "Astra UI is an open-source UI library for Next.js, offering accessible, production-ready components to power your next project with ease. Try it today!",
+            "Capture and share spontaneous ideas with Muse, a fast and minimal platform where creators collaborate, get inspired, and give their thoughts a home. Get started today!",
     };
 }
 
@@ -30,21 +30,42 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
         title: {
             default: product.name,
-            template: "%s | Astra UI",
+            template: "%s | Muse",
         },
         description: product.description,
-        metadataBase: new URL("https://www.astraui.me/"),
-        authors: [{ name: "Ege Uysal" }],
-        keywords: ["React UI library", "React component library", "Astra UI components", "Astra UI React", "React design system", "UI components for React", "Astra UI kit", "React UI toolkit", "modern React components", "lightweight React UI library"],
+        metadataBase: new URL("https://www.muse.egeuysal.com/"),
+        authors: [{name: "Ege Uysal"}],
+        keywords: [
+            "idea sharing platform",
+            "collaborative idea app",
+            "creative inspiration tool",
+            "minimalist idea board",
+            "thought sharing app",
+            "capture creative thoughts",
+            "fast idea capture",
+            "inspiration sharing platform",
+            "platform for creators",
+            "brainstorming and planning tool",
+            "mind mapping for creators",
+            "digital idea notebook",
+            "creative collaboration app",
+            "spontaneous idea capture",
+            "share and discover ideas",
+            "creativity boosting app",
+            "minimal notes app",
+            "creative journaling app",
+            "quick idea logger",
+            "real-time idea sharing"
+        ],
         openGraph: {
             title: product.name,
             description: product.description,
-            url: "https://www.astraui.me/",
+            url: "https://www.muse.egeuysal.com/",
             images: [
                 {
                     url: product.image,
                     width: 1200,
-                    height: 630,
+                    height: 640,
                     alt: "Astra UI Logo",
                 },
             ],
@@ -54,16 +75,16 @@ export async function generateMetadata(): Promise<Metadata> {
         },
         twitter: {
             card: "summary_large_image",
-            site: "@astraui",
+            site: "@muse",
             title: product.name,
             description: product.description,
             images: [product.image],
-            creator: "@astraui",
+            creator: "@muse",
         },
         icons: {
             icon: [
-                { url: "/icon.ico", sizes: "any" },
-                { url: "/icon.png", type: "image/png" },
+                {url: "/icon.ico", sizes: "any"},
+                {url: "/icon.png", type: "image/png"},
             ],
             apple: "/apple-touch-icon.png",
             shortcut: "/icon.ico",
@@ -74,9 +95,9 @@ export async function generateMetadata(): Promise<Metadata> {
             follow: true,
         },
         alternates: {
-            canonical: "https://www.astraui.me/",
+            canonical: "https://www.muse.egeuysal.com/",
         },
-        applicationName: "Astra UI",
+        applicationName: "Muse",
         appleWebApp: {
             capable: true,
             statusBarStyle: "black-translucent",
@@ -106,16 +127,16 @@ export default async function RootLayout({
         "@context": "https://schema.org",
         "@type": "Product",
         "name": product.name,
-        "image": `https://www.astraui.me${product.image}`,
+        "image": `https://www.muse.egeuysal.com/${product.image}`,
         "description": product.description,
-        "url": "https://www.astraui.me/",
+        "url": "https://www.muse.egeuysal.com/",
         "dateModified": currentDate,
         "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "url": "https://www.astraui.me/",
+            "url": "https://www.muse.egeuysal.com/",
             "priceValidUntil": priceValidUntilString,
             "shippingDetails": {
                 "@type": "OfferShippingDetails",
@@ -169,20 +190,20 @@ export default async function RootLayout({
         <head>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
             />
         </head>
         <body className="w-full h-full flex-center">
         <LayoutWrapper jsonLdData={jsonLd}>
             <main className="w-[90vw] md:w-[92.5vw] lg:w-[95vw]">
                 <div className="mb-32">
-                    <Header />
+                    <Header/>
                 </div>
-                <Analytics />
+                <Analytics/>
                 {children}
-                <SpeedInsights />
+                <SpeedInsights/>
                 <aside className="w-full flex-center mt-24">
-                    <Footer />
+                    <Footer/>
                 </aside>
             </main>
         </LayoutWrapper>
