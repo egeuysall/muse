@@ -33,3 +33,4 @@ Thumbs.db
 # Docker-related
 docker-compose.override.yml
 *.dockerignore
+.vercel
