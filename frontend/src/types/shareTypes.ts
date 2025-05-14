@@ -7,7 +7,7 @@ export type CategoryType = {
 export type IdeaProps = {
     title: string;
     description: string;
-    categories: string[];
+    category: string[];
     firstName: string;
     lastName: string;
     date: string;

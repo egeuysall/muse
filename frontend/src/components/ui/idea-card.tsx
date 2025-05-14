@@ -4,7 +4,7 @@ import type {IdeaProps} from "@/types/shareTypes";
 export const IdeaCard: React.FC<IdeaProps> = ({
                                                   title,
                                                   description,
-                                                  categories,
+                                                  category,
                                                   firstName,
                                                   lastName,
                                                   date,
@@ -15,7 +15,7 @@ export const IdeaCard: React.FC<IdeaProps> = ({
             <p className="opacity-50 text-sm text-primary-100">{firstName} {lastName} &#8226; {date}</p>
             <p className="text-primary-100">{description}</p>
             <div>
-                {categories.map((category) => (
+                {category.map((category) => (
                     <span key={category}
                           className="text-primary-100 text-sm font-normal px-2 py-1 rounded-lg bg-primary-300 mr-2">
                         {category}

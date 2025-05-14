@@ -12,6 +12,7 @@ const Share: React.FC = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [activeCategories, setActiveCategories] = useState<string[]>([]);
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     const toggleCategory = (id: string) => {
         setActiveCategories((prev) =>
@@ -22,33 +23,41 @@ const Share: React.FC = () => {
     const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
 
+        console.log("Form submitted");
+
         const formData = {
             firstName,
             lastName,
             title,
             description,
-            categories: activeCategories,
+            category: activeCategories,
         };
 
         try {
-            const res = await fetch('/api/share', {
+            const res = await fetch('http://localhost:8080/share', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${apiKey}`,
                 },
                 body: JSON.stringify(formData),
             });
 
-            const data = await res.json();
+            let data;
+            try {
+                data = await res.json();
+            } catch {
+                data = null;
+            }
 
             if (!res.ok) {
-                throw new Error(data.message || 'Something went wrong');
+                throw new Error(data?.message || 'Something went wrong');
             }
 
         } catch (err) {
             console.error('Error submitting idea:', err);
         }
-    }, [firstName, lastName, title, description, activeCategories]);
+    }, [firstName, lastName, title, description, activeCategories, apiKey]);
 
     return (
         <main className="flex flex-col gap-20">
@@ -89,6 +98,7 @@ const Share: React.FC = () => {
                             {defaultCategories.map(({id, name}) => (
                                 <Button
                                     key={id}
+                                    type="button"
                                     onClick={() => toggleCategory(id)}
                                     className={`${
                                         activeCategories.includes(id)

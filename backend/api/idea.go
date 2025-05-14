@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/egeuysall/muse/db"
 	"github.com/egeuysall/muse/models"
 	"net/http"
 )
@@ -36,31 +37,39 @@ func HandleIdea(apiKey string) http.HandlerFunc {
 				return
 			}
 
-			newIdea.Id = len(Ideas) + 1
-			newIdea.Date = Formatted
-			Ideas = append(Ideas, newIdea)
+			data := map[string]interface{}{
+				"title":       newIdea.Title,
+				"description": newIdea.Description,
+				"category":    newIdea.Category,
+				"first_name":  newIdea.FirstName,
+				"last_name":   newIdea.LastName,
+				"date":        Formatted,
+			}
 
-			w.WriteHeader(http.StatusCreated)
-			err = json.NewEncoder(w).Encode(Ideas)
+			err = db.InsertIdea(data)
 			if err != nil {
-				http.Error(w, "Error encoding response", http.StatusInternalServerError)
+				http.Error(w, "Failed to insert idea: "+err.Error(), http.StatusInternalServerError)
 				return
 			}
-		} else if r.Method == http.MethodGet {
-			w.WriteHeader(http.StatusOK)
 
-			if len(Ideas) != 0 {
-				err := json.NewEncoder(w).Encode(Ideas)
-				if err != nil {
-					http.Error(w, "Error encoding response", http.StatusInternalServerError)
-					return
-				}
-			} else {
+			w.WriteHeader(http.StatusCreated)
+			json.NewEncoder(w).Encode(newIdea)
+		} else if r.Method == http.MethodGet {
+			ideas, err := db.GetIdeas()
+			if err != nil {
+				http.Error(w, "Failed to fetch ideas: "+err.Error(), http.StatusInternalServerError)
+				return
+			}
+
+			if len(ideas) == 0 {
 				_, err := fmt.Fprintln(w, "API is currently empty. You can create a POST request with your API key.")
 				if err != nil {
 					fmt.Println("Failed to write response:", err)
 					return
 				}
+			} else {
+				w.WriteHeader(http.StatusOK)
+				json.NewEncoder(w).Encode(ideas)
 			}
 		} else {
 			http.Error(w, "Only POST and GET methods are allowed", http.StatusMethodNotAllowed)
