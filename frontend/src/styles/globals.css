@@ -88,12 +88,12 @@
     }
 
     .form-input {
-        @apply text-sm md:text-base tracking-tight w-full flex flex-col py-2.5 px-3.5 rounded-lg  placeholder:text-[#000000]/50  text-black  caret-black;
+        @apply text-sm md:text-base tracking-tight w-full flex flex-col py-2.5 px-3.5 rounded-lg;
         @apply outline-none;
     }
 
     .text-area {
-        @apply text-sm md:text-base tracking-tight w-full flex flex-col py-2.5 px-3.5 rounded-lg  placeholder:text-[#000000]/50  text-black  caret-black  h-24;
+        @apply text-sm md:text-base tracking-tight w-full flex flex-col py-2.5 px-3.5 rounded-lg h-24;
         @apply outline-none;
     }
 

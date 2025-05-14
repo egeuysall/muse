@@ -34,7 +34,7 @@ const Share: React.FC = () => {
         };
 
         try {
-            const res = await fetch('http://localhost:8080/share', {
+            const res = await fetch('https://www.museapi.egeuysal.com/share', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,6 +64,8 @@ const Share: React.FC = () => {
             <form onSubmit={handleSubmit}>
                 <section className="w-full flex flex-col gap-4">
                     <h2>Share your ideas with the world.</h2>
+                    <p>Share your best ideas with the community by submitting a title, description, and category to
+                        inspire others and spark creativity.</p>
 
                     <section className="grid gap-4 md:grid-cols-2">
                         <Input
