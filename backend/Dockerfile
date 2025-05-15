@@ -7,16 +7,23 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Copy source and build binary
+# Copy all source files
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o muse .
 
-# Final stage
+# Build the Go binary for Linux, static, named muse
+RUN CGO_ENABLED=0 GOOS=linux go build -o muse main.go
+
+# Final stage: minimal image
 FROM scratch
 
-# Include CA certs to enable HTTPS requests from Go
+# Copy CA certificates for HTTPS support
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+
+# Copy the binary from the builder
 COPY --from=builder /app/muse /muse
 
+# Expose port 8080
 EXPOSE 8080
+
+# Run the binary
 ENTRYPOINT ["/muse"]
