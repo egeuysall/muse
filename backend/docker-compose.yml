@@ -1,13 +1,14 @@
 services:
   muse:
-    build: .
+    build:
+      context: ./backend
     ports:
       - "8080:8080"
     restart: always
     networks:
       - app-network
     env_file:
-      - .env.local
+      - ./backend/.env.local  # relative to docker-compose.yml
 
   nginx:
     image: nginx:latest
@@ -17,7 +18,7 @@ services:
       - "443:443"
     restart: always
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./backend/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - muse
