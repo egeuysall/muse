@@ -1,12 +1,12 @@
 "use client";
 
-import React, {useCallback, useState} from 'react';
-import {Button} from '@/components/ui/button';
-import {IdeaCard} from '@/components/ui/idea-card';
-import {IdeaProps} from '@/types/shareTypes';
+import React, {useCallback, useState} from "react";
+import {Button} from "@/components/ui/button";
+import {IdeaCard} from "@/components/ui/idea-card";
+import {IdeaProps, RawIdea} from "@/types/shareTypes";
 import {defaultCategories} from "@/lib/shareData";
-import {JellyTriangle} from 'ldrs/react'
-import 'ldrs/react/JellyTriangle.css'
+import {JellyTriangle} from "ldrs/react";
+import "ldrs/react/JellyTriangle.css";
 
 const Explore: React.FC = () => {
     const [activeCategories, setActiveCategories] = useState<string[]>([]);
@@ -19,66 +19,73 @@ const Explore: React.FC = () => {
         );
     };
 
+    const transformData = (data: RawIdea[]): IdeaProps[] =>
+        data.map((idea) => ({
+            id: idea.id,
+            title: idea.title,
+            description: idea.description,
+            category: Array.isArray(idea.category) ? idea.category : [idea.category],
+            firstName: idea.first_name,
+            lastName: idea.last_name,
+            date: idea.date,
+        }));
+
+    const extractErrorMessage = (data: unknown): string => {
+        if (
+            typeof data === "object" &&
+            data !== null &&
+            "message" in data &&
+            typeof (data as { message: unknown }).message === "string"
+        ) {
+            return (data as { message: string }).message;
+        }
+        return "Something went wrong";
+    };
+
     const handleFetch = useCallback(async () => {
         try {
-            setLoading(true)
+            setLoading(true);
             const res = await fetch("https://www.museapi.egeuysal.com/share");
-            const data = await res.json();
+            const data: RawIdea[] | unknown = await res.json();
 
             if (!res.ok) {
-                throw new Error(data.message || 'Something went wrong');
+                throw new Error(extractErrorMessage(data));
             }
 
-            const transformed = data.map((idea: any) => ({
-                id: idea.id,
-                title: idea.title,
-                description: idea.description,
-                category: Array.isArray(idea.category) ? idea.category : [idea.category],
-                firstName: idea.first_name,
-                lastName: idea.last_name,
-                date: idea.date,
-            }));
+            const transformed = transformData(data as RawIdea[]);
 
-            // Filter ideas by active categories if any are selected
             if (activeCategories.length > 0) {
-                setIdeas(transformed.filter((idea: IdeaProps) =>
-                    idea.category.some((cat: string) => activeCategories.includes(cat))
-                ));
+                setIdeas(
+                    transformed.filter((idea) =>
+                        idea.category.some((cat) => activeCategories.includes(cat))
+                    )
+                );
             } else {
                 setIdeas(transformed);
             }
         } catch (err) {
-            console.error('Error fetching ideas:', err);
+            console.error("Error fetching ideas:", err);
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [activeCategories]);
 
     const handleRandom = useCallback(async () => {
         try {
-            setLoading(true)
-
+            setLoading(true);
             const res = await fetch("https://www.museapi.egeuysal.com/share");
-            const data = await res.json();
+            const data: RawIdea[] | unknown = await res.json();
 
             if (!res.ok) {
-                throw new Error(data.message || 'Something went wrong');
+                throw new Error(extractErrorMessage(data));
             }
 
-            const transformed = data.map((idea: any) => ({
-                id: idea.id,
-                title: idea.title,
-                description: idea.description,
-                category: Array.isArray(idea.category) ? idea.category : [idea.category],
-                firstName: idea.first_name,
-                lastName: idea.last_name,
-                date: idea.date,
-            }));
+            const transformed = transformData(data as RawIdea[]);
 
             const randomIdea = transformed[Math.floor(Math.random() * transformed.length)];
             setIdeas(randomIdea ? [randomIdea] : []);
         } catch (err) {
-            console.error('Error fetching random idea:', err);
+            console.error("Error fetching random idea:", err);
         } finally {
             setLoading(false);
         }
@@ -96,9 +103,11 @@ const Explore: React.FC = () => {
                 <main className="w-full flex flex-col gap-4">
                     <h2>Explore ideas from the community.</h2>
                     <section className="flex flex-col gap-4">
-                        <p>Discover community-shared ideas by selecting categories and getting inspired with curated
+                        <p>
+                            Discover community-shared ideas by selecting categories and getting inspired with curated
                             content,
-                            tailored to your interests and creativity.</p>
+                            tailored to your interests and creativity.
+                        </p>
                         <p className="font-bold">Select categories</p>
                         <div className="flex overflow-x-auto gap-2">
                             {defaultCategories.map(({id, name}) => (
@@ -107,9 +116,7 @@ const Explore: React.FC = () => {
                                     type="button"
                                     onClick={() => toggleCategory(id)}
                                     className={`${
-                                        activeCategories.includes(id)
-                                            ? 'bg-primary-200'
-                                            : 'bg-primary-200 opacity-50'
+                                        activeCategories.includes(id) ? "bg-primary-200" : "bg-primary-200 opacity-50"
                                     } text-primary-100 text-sm font-normal px-2 py-1 rounded-lg transition duration-200`}
                                 >
                                     {name}
@@ -118,13 +125,17 @@ const Explore: React.FC = () => {
                         </div>
                     </section>
                     <section className="w-full grid md:grid-cols-4 gap-4">
-                        <Button className="btn md:col-span-3" onClick={handleFetch}>Get inspired</Button>
-                        <Button className="btn" onClick={handleRandom}>Random</Button>
+                        <Button className="btn md:col-span-3" onClick={handleFetch}>
+                            Get inspired
+                        </Button>
+                        <Button className="btn" onClick={handleRandom}>
+                            Random
+                        </Button>
                     </section>
                     <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        {ideas.map((idea) => {
-                            return <IdeaCard {...idea} key={idea.id}/>;
-                        })}
+                        {ideas.map((idea) => (
+                            <IdeaCard {...idea} key={idea.id}/>
+                        ))}
                     </section>
                 </main>
             )}
