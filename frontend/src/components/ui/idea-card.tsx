@@ -18,7 +18,7 @@ export const IdeaCard: React.FC<IdeaCardProps> = ({
                                                       date,
                                                   }) => {
     return (
-        <div className="bg-primary-200 p-4 rounded-lg grid gap-2">
+        <div className="bg-primary-200 p-4 rounded-lg grid gap-2 w-full">
             <strong><p className="text-primary-100">{title}</p></strong>
             <p className="opacity-50 text-sm text-primary-100">
                 {firstName} {lastName} &#8226; {date}
