@@ -7,7 +7,7 @@ services:
     env_file:
       - .env.local
     volumes:
-      - ./env.local:/app/.env.local:ro
+      - ./env.local:/.env.local:ro
     networks:
       - app-network
 
