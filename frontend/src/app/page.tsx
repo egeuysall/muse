@@ -20,7 +20,7 @@ const Home: React.FC = () => {
                 </section>
                 <Image alt="Product demo image" className="w-full rounded-lg"
                        width={1000} height={500}
-                       src="/IMG_1160.png"/>
+                       src="/images/reveal.jpg"/>
             </section>
         </main>
     );
