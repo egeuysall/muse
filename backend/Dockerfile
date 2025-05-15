@@ -9,7 +9,7 @@ COPY . .
 
 # Download dependencies and build the app
 RUN go mod tidy
-RUN go build -o highlight-api .
+RUN go build -o muse .
 
 # Step 2: Set up the runtime environment (for the final container)
 FROM alpine:latest
@@ -18,7 +18,7 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 
 # Copy the binary from the builder container
-COPY --from=builder /app/highlight-api /usr/local/bin/highlight-api
+COPY --from=builder /app/muse /usr/local/bin/muse
 
 # Expose the app's port
 EXPOSE 8080
