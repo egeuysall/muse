@@ -40,13 +40,14 @@ To run Muse locally:
    cd muse
    ```
 2. Navigate to each project and install dependencies:
-   **Frontend:**
+
+**Frontend:**
    ```bash
    cd frontend
    pnpm install
    pnpm dev
    ```
-   **Backend:**
+**Backend:**
    ```bash
    cd ../backend
    go run main.go
