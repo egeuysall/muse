@@ -93,22 +93,6 @@ const Header: FC = () => {
                             )}
                         </button>
                     </NavigationMenu>
-
-                    {/* Simplified unified border animation */}
-                    <AnimatePresence>
-                        {scrolled && (
-                            <motion.div
-                                className="absolute inset-0 rounded-lg border  border-primary-300 pointer-events-none"
-                                initial={{opacity: 0}}
-                                animate={{opacity: 1}}
-                                exit={{opacity: 0}}
-                                transition={{
-                                    duration: 0.2,
-                                    ease: "easeInOut"
-                                }}
-                            />
-                        )}
-                    </AnimatePresence>
                 </motion.header>
             </motion.div>
 
