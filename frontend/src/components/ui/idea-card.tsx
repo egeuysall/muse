@@ -24,11 +24,11 @@ export const IdeaCard: React.FC<IdeaCardProps> = ({
                 {firstName} {lastName} &#8226; {date}
             </p>
             <p className="text-primary-100">{description}</p>
-            <div>
+            <div className="flex gap-2">
                 {categoryNames.map((name) => (
                     <span
                         key={name}
-                        className="text-primary-100 text-sm font-normal px-2 py-1 rounded-lg bg-primary-300 mr-2"
+                        className="text-primary-100 flex text-sm font-normal px-2 py-1 rounded-lg bg-primary-300"
                     >
                         {name}
                     </span>
