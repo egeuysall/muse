@@ -8,7 +8,7 @@ services:
     networks:
       - app-network
     env_file:
-      - ./backend/.env.local  # relative to docker-compose.yml
+      - ./.env.local  # relative to docker-compose.yml
 
   nginx:
     image: nginx:latest
