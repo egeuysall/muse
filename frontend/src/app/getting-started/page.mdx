@@ -1,12 +1,12 @@
 <main className="w-full flex flex-col items-center justify-center gap-6">
     <section className="w-[80vw] flex flex-col items-center justify-center gap-6">
-        # Muse
+        ## Muse
         Muse is a collaborative idea-sharing platform where users can store, discover, and share short, spontaneous
         thoughts. Designed to be fast, minimal, and inspiring, Muse helps creators capture ideas in the moment—and
         browse others’ thoughts to spark new ones. Whether you're brainstorming, planning, or daydreaming, Muse gives
         your ideas a home.
 
-        ## Features
+        ### Features
         Muse allows for fast idea capture, enabling users to submit short ideas instantly with a title, category, and
         timestamp. Ideas can be explored either by tag or by time, allowing users to filter ideas by category or browse
         by date to revisit past inspiration. If you’re feeling stuck, Muse provides a random idea generator to serve you
@@ -15,7 +15,7 @@
         built with Go and using `net/http` and `encoding/json` for both speed and simplicity. The frontend is minimal,
         built with Next.js to offer a fast, responsive, and clean user interface.
 
-        ## Installation
+        ### Installation
         To run Muse locally, start by cloning the monorepo:
 
         git clone https://github.com/egeuysall/muse.git
@@ -34,18 +34,18 @@
         Once everything is set up, you can access the frontend at http://localhost:3000 and ensure that the backend is
         running on http://localhost:8080.
 
-        ## Technologies Used
+        ### Technologies Used
         Muse’s backend is built using Go (Golang), taking advantage of its speed and reliability with the standard
         library. The frontend is developed with Next.js 15, a React framework that incorporates the App Router to
         optimize performance. TypeScript is used to ensure safe and structured development on the frontend. The design
         of Muse is minimal and responsive, thanks to the use of Tailwind CSS. For package management, pnpm is employed
         for its speed and disk efficiency.
 
-        ## Environment Variables
+        ### Environment Variables
         To run the application, create a .env.local file in both the frontend and backend directories and populate it
         with the appropriate environment variables.
 
-        ## Development
+        ### Development
         Muse is structured as a monorepo with the frontend as a Next.js app and the backend as a Go server. Make sure to
         follow standard linting and formatting practices before committing any changes.
     </section>
