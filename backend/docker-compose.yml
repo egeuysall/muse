@@ -7,7 +7,7 @@ services:
     env_file:
       - .env.local
     volumes:
-      - ./env.local:/.env.local:ro
+      - /home/egeuysal/muse/backend/.env.local:/.env.local:ro
     networks:
       - app-network
 
