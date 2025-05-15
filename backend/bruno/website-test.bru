@@ -1,0 +1,26 @@
+meta {
+  name: website-test
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://museapi.egeuysal.com/share
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: Unknown
+}
+
+body:json {
+  {
+    "title": "Mindful Break Scheduler",
+    "description": "A web app that reminds users to take short mindfulness breaks during work hours.",
+    "category": ["wellness", "productivity"],
+    "first_name": "Lina",
+    "last_name": "Keller",
+    "date": "2025-05-15"
+  }
+}

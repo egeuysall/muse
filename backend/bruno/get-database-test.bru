@@ -4,8 +4,22 @@ meta {
   seq: 3
 }
 
-get {
-  url: http://localhost:8080
-  body: none
-  auth: inherit
+post {
+  url: http://localhost:8080/share
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: nN-YrZRvm3M="uvnjn!Xg9wSlctFu6zwR=CDgy1ZCVf!a9?yeontQJz6wj/n!x8zKHNyIWOJ830YwfP16sm8!N!zLQ4gPoMbJHN!uAbRg!=XNLb/VuEIuesm6ZV0R5!3/1dXhymozS7I9pf-e9um02-Udad/iODiG/PaOvI8ku5-SKtfu3X8OkDkhq5MdI-IG4eGxEB6gVIZsaCwPExQJCjOvR?!Z5D15fKK0RgCA1GU3oDEieGOCVnT-dsMbvlLz"
+}
+
+body:json {
+  {
+    "title": "Make Learning Fun",
+    "description": "An AI-powered learning platform that uses interactive storytelling.",
+    "category": ["Education", "AI", "Productivity"],
+    "firstName": "Ege",
+    "lastName": "Uysal"
+  }
 }
