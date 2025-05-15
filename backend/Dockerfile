@@ -1,20 +1,27 @@
-# Build stage
-FROM golang:1.19-alpine AS builder
+# Step 1: Use a Go base image to build the app
+FROM golang:1.19-alpine as builder
 
+# Set the current working directory inside the container
 WORKDIR /app
 
-COPY go.mod go.sum ./
-RUN go mod download
-
+# Copy the Go source code into the container
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o muse main.go
+# Download dependencies and build the app
+RUN go mod tidy
+RUN go build -o highlight-api .
 
-FROM scratch
+# Step 2: Set up the runtime environment (for the final container)
+FROM alpine:latest
 
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=builder /app/muse /muse
+# Install CA certificates (needed to access HTTPS resources)
+RUN apk --no-cache add ca-certificates
 
+# Copy the binary from the builder container
+COPY --from=builder /app/highlight-api /usr/local/bin/highlight-api
+
+# Expose the app's port
 EXPOSE 8080
 
-ENTRYPOINT ["/muse"]
+# Start the app when the container is run
+CMD ["muse"]
