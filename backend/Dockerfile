@@ -1,27 +1,23 @@
-# Step 1: Use a Go base image to build the app
-FROM golang:1.19-alpine as builder
+# backend/Dockerfile
 
-# Set the current working directory inside the container
+# Build stage
+FROM golang:1.23-alpine AS builder
+
 WORKDIR /app
 
-# Copy the Go source code into the container
+COPY go.mod go.sum ./
+RUN go mod download
+
 COPY . .
 
-# Download dependencies and build the app
-RUN go mod tidy
-RUN go build -o muse .
+RUN CGO_ENABLED=0 GOOS=linux go build -o muse main.go
 
-# Step 2: Set up the runtime environment (for the final container)
-FROM alpine:latest
+# Final stage: minimal image
+FROM scratch
 
-# Install CA certificates (needed to access HTTPS resources)
-RUN apk --no-cache add ca-certificates
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /app/muse /muse
 
-# Copy the binary from the builder container
-COPY --from=builder /app/muse /usr/local/bin/muse
-
-# Expose the app's port
 EXPOSE 8080
 
-# Start the app when the container is run
-CMD ["muse"]
+ENTRYPOINT ["/muse"]
