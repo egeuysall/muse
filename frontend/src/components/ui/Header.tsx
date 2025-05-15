@@ -50,7 +50,7 @@ const Header: FC = () => {
         <div className="fixed top-6 left-0 right-0 z-100 flex justify-center w-full ">
             <motion.div className="relative w-[90vw] md:w-[95vw]">
                 <motion.header
-                    className="backdrop-blur-sm bg-primary-200/90 py-3 px-2 rounded-lg flex justify-between relative z-10"
+                    className="backdrop-blur-sm bg-primary-200 py-3 px-2 rounded-lg flex justify-between relative z-10"
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     transition={{duration: 0.2}}
