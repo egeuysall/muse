@@ -154,13 +154,19 @@ const Explore: React.FC = () => {
                         </Button>
                     </section>
                     <section className="grid w-full gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        {ideas.map((idea) => (
-                            <IdeaCard
-                                {...idea}
-                                key={idea.id}
-                                categoryNames={idea.category.map(getCategoryName)}
-                            />
-                        ))}
+                        {ideas.length > 0 ? (
+                            ideas.map((idea) => (
+                                <IdeaCard
+                                    {...idea}
+                                    key={idea.id}
+                                    categoryNames={idea.category.map(getCategoryName)}
+                                />
+                            ))
+                        ) : (
+                            <div className="col-span-full text-center text-primary-200 opacity-60">
+                                No ideas to display yet.
+                            </div>
+                        )}
                     </section>
                 </main>
             )}

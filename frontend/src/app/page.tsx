@@ -18,7 +18,7 @@ const Home: React.FC = () => {
                         <Button className="btn w-full md:w-auto">Capture ideas</Button>
                     </Link>
                 </section>
-                <Image alt="Product demo image" className="w-full rounded-lg"
+                <Image alt="Product demo image" className="w-full rounded-lg rotate-180"
                        width={1000} height={500}
                        src="/images/reveal.jpg"/>
             </section>
