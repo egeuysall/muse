@@ -22,8 +22,7 @@ export const defaultCategories: CategoryType[] = [
     {id: "19", name: "Nature", segment: "nature"},
     {id: "20", name: "Adventure", segment: "adventure"},
     {id: "21", name: "Photography", segment: "photography"},
-    {id: "22", name: "MentalHealth", segment: "mental_health"},
     {id: "23", name: "Finance", segment: "finance"},
-    {id: "24", name: "TechStartups", segment: "tech_startups"},
+    {id: "24", name: "Startups", segment: "startups"},
     {id: "25", name: "Motivation", segment: "motivation"}
 ];

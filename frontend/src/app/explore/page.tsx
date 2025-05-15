@@ -163,7 +163,7 @@ const Explore: React.FC = () => {
                                 />
                             ))
                         ) : (
-                            <div className="col-span-full text-center text-primary-200 opacity-60">
+                            <div className="text-primary-200">
                                 No ideas to display yet.
                             </div>
                         )}
