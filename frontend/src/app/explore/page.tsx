@@ -3,10 +3,20 @@
 import React, {useCallback, useState} from "react";
 import {Button} from "@/components/ui/button";
 import {IdeaCard} from "@/components/ui/idea-card";
-import {IdeaProps, RawIdea} from "@/types/shareTypes";
+import {IdeaProps} from "@/types/shareTypes";
 import {defaultCategories} from "@/lib/shareData";
 import {JellyTriangle} from "ldrs/react";
 import "ldrs/react/JellyTriangle.css";
+
+interface RawIdea {
+    id: string | number;
+    title: string;
+    description: string;
+    category: string | string[];
+    first_name: string;
+    last_name: string;
+    date: string;
+}
 
 const Explore: React.FC = () => {
     const [activeCategories, setActiveCategories] = useState<string[]>([]);
@@ -20,15 +30,20 @@ const Explore: React.FC = () => {
     };
 
     const transformData = (data: RawIdea[]): IdeaProps[] =>
-        data.map((idea) => ({
-            id: idea.id,
-            title: idea.title,
-            description: idea.description,
-            category: Array.isArray(idea.category) ? idea.category : [idea.category],
-            firstName: idea.first_name,
-            lastName: idea.last_name,
-            date: idea.date,
-        }));
+        data.map((idea) => {
+            // Convert id to number if possible, else undefined
+            const idNum =
+                typeof idea.id === "number" ? idea.id : Number(idea.id ?? NaN);
+            return {
+                id: Number.isNaN(idNum) ? undefined : idNum,
+                title: idea.title,
+                description: idea.description,
+                category: Array.isArray(idea.category) ? idea.category : [idea.category],
+                firstName: idea.first_name,
+                lastName: idea.last_name,
+                date: idea.date,
+            };
+        });
 
     const extractErrorMessage = (data: unknown): string => {
         if (
@@ -116,7 +131,9 @@ const Explore: React.FC = () => {
                                     type="button"
                                     onClick={() => toggleCategory(id)}
                                     className={`${
-                                        activeCategories.includes(id) ? "bg-primary-200" : "bg-primary-200 opacity-50"
+                                        activeCategories.includes(id)
+                                            ? "bg-primary-200"
+                                            : "bg-primary-200 opacity-50"
                                     } text-primary-100 text-sm font-normal px-2 py-1 rounded-lg transition duration-200`}
                                 >
                                     {name}
