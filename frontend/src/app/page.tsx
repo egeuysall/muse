@@ -18,9 +18,9 @@ const Home: React.FC = () => {
                         <Button className="btn w-full md:w-auto">Capture ideas</Button>
                     </Link>
                 </section>
-                <Image alt="Product demo image" className="w-full rounded-lg hover:blur-xs transition duration-200"
+                <Image alt="Product demo image" className="w-full rounded-lg"
                        width={1000} height={500}
-                       src="/images/reveal.jpg"/>
+                       src="/IMG_1160.png"/>
             </section>
         </main>
     );
