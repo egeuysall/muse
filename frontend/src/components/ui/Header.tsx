@@ -178,7 +178,7 @@ const Header: FC = () => {
                                                             >
                                                                 <Link
                                                                     href={link.href}
-                                                                    className="py-3 inline-block text-black hover:text-gray-600  transition-colors w-full"
+                                                                    className="py-3 inline-block text-primary-300 hover:opacity-75 duration-200 transition w-full"
                                                                     onClick={() => setMobileMenuOpen(false)}
                                                                 >
                                                                     {link.text}

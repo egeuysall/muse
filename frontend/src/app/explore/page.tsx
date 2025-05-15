@@ -31,7 +31,6 @@ const Explore: React.FC = () => {
 
     const transformData = (data: RawIdea[]): IdeaProps[] =>
         data.map((idea) => {
-            // Convert id to number if possible, else undefined
             const idNum =
                 typeof idea.id === "number" ? idea.id : Number(idea.id ?? NaN);
             return {
@@ -60,7 +59,7 @@ const Explore: React.FC = () => {
     const handleFetch = useCallback(async () => {
         try {
             setLoading(true);
-            const res = await fetch("https://www.museapi.egeuysal.com/share");
+            const res = await fetch("https://museapi.egeuysal.com/share");
             const data: RawIdea[] | unknown = await res.json();
 
             if (!res.ok) {
@@ -88,7 +87,7 @@ const Explore: React.FC = () => {
     const handleRandom = useCallback(async () => {
         try {
             setLoading(true);
-            const res = await fetch("https://www.museapi.egeuysal.com/share");
+            const res = await fetch("https://museapi.egeuysal.com/share");
             const data: RawIdea[] | unknown = await res.json();
 
             if (!res.ok) {
@@ -106,6 +105,12 @@ const Explore: React.FC = () => {
         }
     }, []);
 
+    // Map category ID to category name
+    const getCategoryName = (id: string) => {
+        const cat = defaultCategories.find((c) => c.id === id);
+        return cat ? cat.name : id;
+    };
+
     return (
         <>
             {loading ? (
@@ -120,8 +125,7 @@ const Explore: React.FC = () => {
                     <section className="flex flex-col gap-4">
                         <p>
                             Discover community-shared ideas by selecting categories and getting inspired with curated
-                            content,
-                            tailored to your interests and creativity.
+                            content, tailored to your interests and creativity.
                         </p>
                         <p className="font-bold">Select categories</p>
                         <div className="flex overflow-x-auto gap-2">
@@ -151,7 +155,11 @@ const Explore: React.FC = () => {
                     </section>
                     <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                         {ideas.map((idea) => (
-                            <IdeaCard {...idea} key={idea.id}/>
+                            <IdeaCard
+                                {...idea}
+                                key={idea.id}
+                                categoryNames={idea.category.map(getCategoryName)}
+                            />
                         ))}
                     </section>
                 </main>

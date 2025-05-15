@@ -93,7 +93,7 @@
     }
 
     .text-area {
-        @apply text-sm md:text-base tracking-tight w-full flex flex-col py-2.5 px-3.5 rounded-lg h-24;
+        @apply text-sm md:text-base tracking-tight w-full flex flex-col py-2.5 px-3.5 rounded-lg h-24 !text-primary-100;
         @apply outline-none;
     }
 
