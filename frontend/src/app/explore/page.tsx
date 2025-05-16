@@ -59,7 +59,7 @@ const Explore: React.FC = () => {
     const handleFetch = useCallback(async () => {
         try {
             setLoading(true);
-            const res = await fetch("https://museapi.egeuysal.com/share");
+            const res = await fetch("https://museapi.egeuysal.com/ideas");
             const data: RawIdea[] | unknown = await res.json();
 
             if (!res.ok) {
@@ -87,7 +87,7 @@ const Explore: React.FC = () => {
     const handleRandom = useCallback(async () => {
         try {
             setLoading(true);
-            const res = await fetch("https://museapi.egeuysal.com/share");
+            const res = await fetch("https://museapi.egeuysal.com/ideas");
             const data: RawIdea[] | unknown = await res.json();
 
             if (!res.ok) {

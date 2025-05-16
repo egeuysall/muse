@@ -35,7 +35,7 @@ const Share: React.FC = () => {
             };
 
             try {
-                const res = await fetch('https://museapi.egeuysal.com/share', {
+                const res = await fetch('https://museapi.egeuysal.com/ideas', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
