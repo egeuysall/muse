@@ -15,7 +15,7 @@ func HandleRoot(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err := fmt.Fprintln(w, "Welcome to the Muse API. Please go to /ideas to POST or GET!")
+	_, err := fmt.Fprintln(w, "Welcome to the Muse API. Use /ideas to post or get ideas, /categories to list categories, /recents for latest ideas, and ?limit= to control results.")
 	if err != nil {
 		fmt.Println("Failed to write response:", err)
 	}
