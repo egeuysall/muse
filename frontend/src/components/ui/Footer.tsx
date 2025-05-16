@@ -31,21 +31,6 @@ const Footer: React.FC = () => {
                         <nav className="mt-3">
                             <ul className="flex flex-col gap-2">
                                 <li>
-                                    <Link href="/docs/terms-of-service.pdf" className="footer-text">
-                                        Terms of service
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/docs/getting-started" className="footer-text">
-                                        Documentation
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/docs/privacy-policy.pdf" className="footer-text">
-                                        Privacy policy
-                                    </Link>
-                                </li>
-                                <li>
                                     <Link href="mailto:hello@egeuysal.com" className="footer-text">
                                         Contact us
                                     </Link>
